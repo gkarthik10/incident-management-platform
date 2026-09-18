@@ -22,4 +22,8 @@ public class AppConfig {
                 .readTimeout(Duration.ofSeconds(15))
                 .build();
     }
+<<<<<<< Updated upstream
 }
+=======
+}
+>>>>>>> Stashed changes
