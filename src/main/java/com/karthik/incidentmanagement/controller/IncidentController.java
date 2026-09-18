@@ -21,6 +21,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/incidents")
@@ -69,9 +70,9 @@ public class IncidentController {
 
     @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteIncident(@PathVariable Long id) {
+    public ResponseEntity<Map<String, String>> deleteIncident(@PathVariable Long id) {
         incidentService.deleteIncident(id);
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok(Map.of("message", "Incident deleted successfully"));
     }
 
     @PreAuthorize("hasAnyRole('ADMIN','ENGINEER')")
