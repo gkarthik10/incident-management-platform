@@ -90,6 +90,7 @@ public class IncidentServiceImpl implements IncidentService {
     @Override
     public void deleteIncident(Long id) {
         Incident incident = findIncidentOrThrow(id);
+        activityRepository.deleteByIncidentId(id);
         incidentRepository.delete(incident);
     }
 
