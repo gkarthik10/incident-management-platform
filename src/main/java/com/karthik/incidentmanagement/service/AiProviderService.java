@@ -49,7 +49,7 @@ public class AiProviderService {
     @Value("${groq.api.url:https://api.groq.com/openai/v1/chat/completions}")
     private String apiUrl;
 
-    @Value("${groq.model:llama-3.1-8b-instant}")
+    @Value("${groq.model:openai/gpt-oss-20b}")
     private String model;
 
     public AiResponseDto analyzeIncident(String description) {
