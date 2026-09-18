@@ -11,6 +11,7 @@ import com.karthik.incidentmanagement.security.SecurityUtils;
 import com.karthik.incidentmanagement.service.IncidentService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -41,7 +42,7 @@ public class IncidentController {
     public Page<IncidentResponseDto> getAllIncidents(
             @RequestParam(required = false) Status status,
             @RequestParam(required = false) Severity severity,
-            @PageableDefault(size = 20, sort = "createdAt", direction = Sort.Direction.DESC) Pageable pageable) {
+            @ParameterObject @PageableDefault(size = 20, sort = "createdAt", direction = Sort.Direction.DESC) Pageable pageable) {
 
         return incidentService.getAllIncidents(status, severity, pageable);
     }
@@ -49,7 +50,7 @@ public class IncidentController {
     @PreAuthorize("hasAnyRole('ADMIN','ENGINEER','EMPLOYEE')")
     @GetMapping("/my")
     public Page<IncidentResponseDto> getMyIncidents(
-            @PageableDefault(size = 20, sort = "createdAt", direction = Sort.Direction.DESC) Pageable pageable) {
+            @ParameterObject @PageableDefault(size = 20, sort = "createdAt", direction = Sort.Direction.DESC) Pageable pageable) {
 
         return incidentService.getMyIncidents(SecurityUtils.getCurrentUserEmail(), pageable);
     }
