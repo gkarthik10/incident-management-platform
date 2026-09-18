@@ -5,7 +5,7 @@ services:
       MYSQL_DATABASE: incident_management
       MYSQL_ROOT_PASSWORD: root
     ports:
-      - "3306:3306"
+      - "3307:3306"
     volumes:
       - mysqldata:/var/lib/mysql
     healthcheck:
